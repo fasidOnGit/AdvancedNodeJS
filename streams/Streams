@@ -1,0 +1,41 @@
+There 4 fundamental types of streams
+    Readable - Readable is an abstraction for a src from which data can be consumed - Eg fs.createReadStream
+    Writable - Writable is an abstraction for a destination to which the data can be written to. - Eg fs.createWriteStream
+    Duplex -   Duplex streams are both Readable and Writable - For eg - Sockets
+    Transform (a.k.a Through Streams) - Transform streams are basically duplex streams that can be used to modify or transform the data as it is written and read. for Eg - zlib createGzip stream to compressa the data using gzip.
+    Also think Transform stream as a function where input is the writable stream and output is readable stream.
+All streams are instances of EventEmitter. they all emit events that we can use to write or read data from them.
+        `src.pipe(dest)`
+    a.pipe(b).pipe(c).pipe(d); // all these are duplex streams
+
+Streams =   Implementing            |   Consuming
+            require('stream')           piping/events
+
+Readable Streams Events - data , end , error , readable
+writable streams Events -  drain , finish , error , close , pipe/unpipe
+
+data - when there is data to consume.
+end - when all the data has been emitted
+
+
+drain - when the streams are drained and are available for more streams to write
+finish - when all the data has been writter to the dest
+
+
+readable streams function - to consume
+ pipe() , unpipe() , read() , unshift() , resume()
+
+writable streams function - to write
+write() , end()
+
+
+Modes
+Readable - paused mode and Flowing mode  aka pull vs push modes
+In paused mode use - stream.read() to consume
+In Flowing mode the data is continously flowing and we can use EventEmitter to consume them
+ 
+In fact just adding a data event handler switches a paused stream into flowing mode and removing the data handler switched it back to paused mode
+
+stream.resume() from paused
+stream.pause() from flowing
+
