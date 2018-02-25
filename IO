@@ -1,0 +1,51 @@
+IO  - Input output
+
+IO is used to label a communication between a process in a computer CPU and anything external to that CPU.
+
+Process communicates with these external things using signals and messages. Those signals are input when they are received by the process
+and output when they are sent out by the process
+
+Node Archetecture:
+IO means refers to accessing Disk and Network resources - time consuming
+
+Nginx is single threaded. 
+
+Event Loop :
+The entity that handles external events and converts them into callback invocations.
+
+A loop that picks events from the event qeue and pushes thier callbacks to the call stack.
+
+V8 - Heap | Stack
+Heap - Objects are stored ; Its basically the memory that gets allocated by the VM for various tasks.
+For Eg :  When ivoking fn the area in the heap is allocated to act as a local scope of the function.
+
+Both Stack and Heap are part of the run-time engine , Not node itself.
+
+Node adds APIs like timers , emitter , wrappers around OS Ops. 
+Node also gives the Event loop and event queue from the libuv library.
+
+Event Loop : its a loop that works between the event queue and the call stack.
+
+V8 Call stack : A list of Functions.
+A Stack is a LIFO data structure.
+
+There is only one stack and can do only one thing at a time. (Single thread)
+
+Handling slow connection
+
+timer functions like setTimeout is part of V8 rather its from Node just like it is from the browser
+Its wired wit the event loop asynchrously.
+
+Event Queue/Message Queue/Callbacl Queue:
+Simply a list of things to be processed (events).
+For Eg : we store event in the queue we simply store an plain-old function with it.(this function is known as callback);
+This Queue is FIFO. The first function in the queue will be the first function to be dequeued.
+We just need to invoke the function in the queue to de-queue it. this push the function to the stack.
+
+
+Event Loop:
+When the call stack gets empty:
+While the queue is not empty:
+    event = dequeue an event
+    if there is a callback:
+        call the event's callback
