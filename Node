@@ -5,3 +5,8 @@ Shipped Staged Inprogress
 
 Staged = --harmony
 Inprogress to find it --> node --v8-options|grep "in progress"
+
+
+Event Emitter:
+
+We can think of them as hook points to play around the state change.
