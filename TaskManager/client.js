@@ -14,7 +14,7 @@ server.on('response' , (response)=>{
     process.stdout.write(response)
     process.stdout.write('\n>');
 })
-let command , ars;
+let command , args;
 
 rl.on('line' , input => {
     [command , ...args] = input.split(' ');
